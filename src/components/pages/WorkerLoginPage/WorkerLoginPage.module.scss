@@ -1,0 +1,72 @@
+.root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo {
+    margin-bottom: 20px;
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--black);
+    width: 362px;
+    padding: 20px 14px 14px 14px;
+    border-radius: 10px;
+    gap: 10px;
+    box-shadow: 0px 0px 10px 0px #00000026;
+  }
+  .md {
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  input[type="text"],
+  input[type="password"] {
+    padding: 18.5px 14px;
+    border-radius: 10px;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    line-height: 18.4px;
+    letter-spacing: -0.02em;
+    color: var(--black);
+  }
+  input[type="text"]::placeholder,
+  input[type="password"]::placeholder {
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18.4px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: var(--gray);
+  }
+
+  .link {
+    text-align: center;
+  }
+
+  .password {
+    position: relative;
+  }
+  .line,
+  .eye {
+    position: absolute;
+    right: 14px;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease 0s;
+  }
+  .lineHide {
+    opacity: 0;
+  }
+}
