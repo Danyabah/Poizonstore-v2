@@ -1,0 +1,138 @@
+@mixin mobile {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+body {
+  background: #f6f6f4;
+}
+.link {
+  width: 100%;
+  background-color: var(--mint);
+  color: var(--black);
+  font-family: Gilroy;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18.4px;
+  letter-spacing: -0.02em;
+  padding: 18.5px 0;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  transition: all 0.3s ease 0s;
+  @include mobile {
+    font-size: 14px;
+    line-height: 16.1px;
+    letter-spacing: -0.02em;
+    padding: 18.5px 24.5px;
+    white-space: nowrap;
+  }
+}
+.link-icon {
+  width: 34px;
+  height: 34px;
+  background-color: var(--black);
+  border-radius: 10px;
+  transition: all 0.3s ease 0s;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.link-under {
+  font-family: Gilroy;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 13.8px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  transition: all 0.3s ease 0s;
+  text-decoration: underline;
+}
+.block {
+  width: 34px;
+  height: 34px;
+  background-color: var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.button {
+  background-color: var(--black);
+  padding: 18.5px 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-family: Gilroy;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  line-height: 18.4px;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease 0s;
+}
+.button-center {
+  justify-content: center;
+}
+.link-icon:hover,
+.link:hover,
+.link-under:hover,
+.block:hover,
+.button:hover {
+  opacity: 0.8;
+}
+.big {
+}
+h2 {
+  font-family: Bebas Neue Cyrillic;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 26.13px;
+}
+
+.container {
+  max-width: 1164px;
+  margin: 0 auto;
+  @include mobile {
+    padding: 0px 14px;
+  }
+}
+p {
+  font-family: Gilroy;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.8px;
+  letter-spacing: -0.02em;
+}
+.text-bold {
+  font-family: Gilroy;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18.4px;
+  letter-spacing: -0.02em;
+  color: var(--black);
+}
+.text-gray {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.1px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  color: var(--gray);
+}
+.label {
+  font-family: Gilroy;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14.4px;
+  letter-spacing: -0.02em;
+}

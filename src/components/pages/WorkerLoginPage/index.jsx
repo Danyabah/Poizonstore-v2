@@ -1,28 +1,83 @@
 import styles from "./WorkerLoginPage.module.scss";
 import logo from "../../../assets/logo.svg";
-import { Link } from "react-router-dom";
-import { Field, Form, Formik } from "formik";
+import { Link, useNavigate } from "react-router-dom";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import BasicCheckbox from "../../ui/BasicCheckbox/BasicCheckbox";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getMe, handleLogin } from "../../../redux/slices/userReducer";
+import { useAlert } from "react-alert";
+import { setAccessToken } from "../../../axiosinstance";
+import svgError from "../../../assets/svg-error.svg";
+import * as Yup from "yup";
 
 export default function WorkerLoginPage() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
+
+  const initialValues = {
+    email_or_phone: "",
+    password: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    email_or_phone: Yup.string().required("Необходимо указать логин"),
+
+    password: Yup.string()
+      .required("Необходимо указать пароль")
+      .min(6, "пароль слишком короткий"),
+  });
+
+  function handleSubmit(values) {
+    dispatch(handleLogin(values)).then((data) => {
+      if (data.error) {
+        alert.error("Проверьте введенный логин/пароль");
+        return;
+      }
+      setAccessToken(data.payload.data.auth_token);
+      dispatch(getMe()).then(() => {
+        navigate("/", { replace: true });
+      });
+    });
+  }
 
   return (
     <div className={styles.root}>
       <div className={styles.container}>
         <img className={styles.logo} src={logo} alt="" />
-        <Formik>
+        <Formik
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+          initialValues={initialValues}
+        >
           {() => {
             return (
               <Form>
                 <div className={styles.menu}>
                   <h2 className={styles.md}>Авторизуйтесь</h2>
-                  <Field type="text" placeholder="Логин" />
+                  <Field
+                    name="email_or_phone"
+                    type="text"
+                    placeholder="Логин"
+                  />
+                  <ErrorMessage name="email_or_phone">
+                    {(msg) => (
+                      <div className={styles.errors}>
+                        <div className={styles.error}>
+                          <img src={svgError} alt="" />
+                          <span>{msg}</span>
+                        </div>
+                      </div>
+                    )}
+                  </ErrorMessage>
+
                   <div className={styles.password}>
                     <Field
                       type={visible ? "password" : "text"}
                       placeholder="Пароль"
+                      name="password"
                     />
                     <svg
                       className={
@@ -58,8 +113,22 @@ export default function WorkerLoginPage() {
                       />
                     </svg>
                   </div>
-
-                  <BasicCheckbox label={"Запомнить меня"} />
+                  <ErrorMessage name="password">
+                    {(msg) => (
+                      <div className={styles.errors}>
+                        <div className={styles.error}>
+                          <img src={svgError} alt="" />
+                          <span>{msg}</span>
+                        </div>
+                      </div>
+                    )}
+                  </ErrorMessage>
+                  <BasicCheckbox
+                    onChange={(v) => {
+                      console.log(v);
+                    }}
+                    label={"Запомнить меня"}
+                  />
                   <button type="submit" className="link">
                     Войти
                   </button>

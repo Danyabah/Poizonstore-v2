@@ -11,6 +11,7 @@ export default function BasicCheckbox({ label, onChange, disabled }) {
 
   return (
     <button
+      type="button"
       className={
         checked
           ? styles.checkbox + " " + styles.checkboxActive

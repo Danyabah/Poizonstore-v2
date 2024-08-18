@@ -9,11 +9,22 @@ import UserLoginPage from "./components/pages/UserLoginPage";
 import WorkerLoginPage from "./components/pages/WorkerLoginPage";
 import CalulatePage from "./components/pages/CalulatePage";
 import LoginPage from "./components/pages/LoginPage";
+import Layout from "./components/Layout";
+import UserPage from "./components/pages/UserPage";
 
 function App() {
   const router = createBrowserRouter([
     {
-      element: <ProtectedRouter isAllowed={false} redirect={"/login"} />,
+      element: (
+        <ProtectedRouter
+          redirect={"/login"}
+          acceptedRoles={{
+            admin: true,
+            productmanager: true,
+            ordermanager: true,
+          }}
+        />
+      ),
       children: [
         {
           index: true,
@@ -26,7 +37,30 @@ function App() {
       ],
     },
     {
-      element: <ProtectedRouter />,
+      element: (
+        <ProtectedRouter
+          redirect={"/login"}
+          acceptedRoles={{
+            admin: true,
+            productmanager: true,
+            ordermanager: true,
+            client: true,
+          }}
+        />
+      ),
+      children: [
+        {
+          path: "/user",
+          element: <UserPage />,
+        },
+        {
+          path: "*",
+          element: <Navigate to={"/"} />,
+        },
+      ],
+    },
+    {
+      element: <Layout />,
       children: [
         {
           path: "/login",

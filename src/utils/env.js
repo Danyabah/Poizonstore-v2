@@ -1,1 +1,1 @@
-export const DevUrl = import.meta.env.REACT_APP_BACK_API_URL;
+export const DevUrl = import.meta.env.VITE_BACK_API_URL;

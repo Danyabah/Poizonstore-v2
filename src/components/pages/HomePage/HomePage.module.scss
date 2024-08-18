@@ -1,0 +1,53 @@
+.root {
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .rowItem {
+    width: calc(100% / 3 - 12px);
+  }
+  .inputContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 18.5px 15px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 0px #00000026;
+    background-color: white;
+  }
+  .input {
+    width: 100%;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18.4px;
+    letter-spacing: -0.02em;
+  }
+  .input::placeholder {
+    color: var(--gray);
+  }
+  .statuses {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .status {
+    border-radius: 10px;
+    padding: 9px 10px;
+    box-shadow: 0px 0px 10px 0px #00000026;
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.1px;
+    cursor: pointer;
+    letter-spacing: -0.02em;
+    transition: all 0.3s ease 0s;
+  }
+  .status:hover {
+    opacity: 0.8;
+  }
+  .statusActive {
+    background-color: var(--black);
+    color: white;
+  }
+}
