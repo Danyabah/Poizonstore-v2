@@ -70,6 +70,7 @@ export default function HomePage() {
               />
             </div>
           </div>
+          {/* to do отобразить список элементов */}
         </div>
       </div>
     </div>
